@@ -24,9 +24,12 @@ def computarpuntos(nombreArchivoSolucion,nombreArchivoInicial,sumaPuntos,cochesv
     lineasfinal=lineasfinal[::-1]
     intersec=[]
     rotondas=[]
+    ll=0
     while(1):
         try:
             u=lineasfinal.pop()
+           
+            
         except:
             break
         
@@ -36,7 +39,10 @@ def computarpuntos(nombreArchivoSolucion,nombreArchivoInicial,sumaPuntos,cochesv
         numero=lineasfinal.pop()
         j=0
         suma=0
-        intersec.append({})
+        while ll<=int(u):
+            rotondas.append(0)
+            intersec.append({})
+            ll+=1
         #print(numero)
         while(j<int(numero)):
             vv=lineasfinal.pop().split(" ")
@@ -46,11 +52,13 @@ def computarpuntos(nombreArchivoSolucion,nombreArchivoInicial,sumaPuntos,cochesv
             suma+=l
              
             j+=1
-        rotondas.append(suma)
+        rotondas[len(rotondas)-1]=(suma)
+    #print(len(intersec))   
     i=0
     puntos=0
     segundosPorCoche=np.zeros(shape=( numerocoches))
     for coche in cars:
+        #print(i)
         segundosActuales=0
         j=0
         rotondaInicial=cochesvsinteresecciones[i][0]
@@ -60,7 +68,7 @@ def computarpuntos(nombreArchivoSolucion,nombreArchivoInicial,sumaPuntos,cochesv
         l=0
         for rotonda in cochesvsinteresecciones[i][0:-1]:
             calle=coche[1+j]
-            
+            #print(rotonda)
             longciclo=rotondas[rotonda]
             
             seg=segundosActuales%longciclo

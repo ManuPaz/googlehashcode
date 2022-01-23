@@ -29,18 +29,19 @@ def escribirEnArchivo(incidencia,arrayCalles,numerointersecciones):
     file.close()
     
     
-def escribirEnArchivo2(rotondas):
+def escribirEnArchivo2(solucionAEscribir):
     file=open("solucion.txt","w")
-    filasaescribir=[]
    
-        
-    file.writelines(str(len(rotondas))+"\n")
-    for rotonda in rotondas:
-        file.writelines(str(len(rotonda.keys()))+"\n")
+    for linea in solucionAEscribir:
+        if isinstance(linea, int):
+            file.writelines(str(linea)+"\n")
         #print(linea)
-        for i,e in rotonda.items():
-          
-             file.writelines(i+" "+str(e)+"\n")
+        else:
+            cadena=""
+            for elem in linea:
+                cadena+=(str(elem)+" ")
+            cadena=cadena[:-1]
+            file.writelines(cadena+"\n")
       
     file.close()
 

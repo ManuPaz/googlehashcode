@@ -8,7 +8,7 @@ Created on Sun Jan 23 10:14:53 2022
 import pandas as pd
 import numpy as np
 import time
-print("main")
+
 def entradaDatos(nombreArchivo):
         #nombreArch="a.txt"
     nombreArch=nombreArchivo
@@ -71,7 +71,9 @@ def entradaDatos(nombreArchivo):
 
 
 
-    for coche in cochesvsinteresecciones:
+    for coche,car in zip(cochesvsinteresecciones,cars):
+        adyacencia1[coche[0],int(calles[dicCalles[car[1]]][0])]+=1
+        
         for j in range(0,len(coche)-1):
             adyacencia1[coche[j+1],coche[j]]+=1
             #print("%s,%s,%s"%(coche[j+1],coche[j],adyacencia1[coche[j+1],coche[j]]))
