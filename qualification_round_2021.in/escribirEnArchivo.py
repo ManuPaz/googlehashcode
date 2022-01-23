@@ -29,8 +29,8 @@ def escribirEnArchivo(incidencia,arrayCalles,numerointersecciones):
     file.close()
     
     
-def escribirEnArchivo2(solucionAEscribir):
-    file=open("solucion.txt","w")
+def escribirEnArchivo2(solucionAEscribir,archivo):
+    file=open(archivo,"w")
    
     for linea in solucionAEscribir:
         if isinstance(linea, int):

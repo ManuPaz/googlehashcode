@@ -18,7 +18,7 @@ def entradaDatos(nombreArchivo):
     numerocalles=cabecera[2]
     numerointersecciones=cabecera[1]
     numerocoches=cabecera[3]
-    print(cabecera)
+    #print(cabecera)
     calles=[lin.strip() .split(" ")for lin in lineas[1:(numerocalles+1)]]
     nombrescalles=[calle[2] for calle in calles]
     cars=[lin.strip() .split(" ")for lin in lineas[(numerocalles+1):]]
