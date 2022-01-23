@@ -8,7 +8,7 @@ Created on Sun Jan 23 10:14:53 2022
 import pandas as pd
 import numpy as np
 import time
-
+print("hola")
 def entradaDatos(nombreArchivo):
         #nombreArch="a.txt"
     nombreArch=nombreArchivo
