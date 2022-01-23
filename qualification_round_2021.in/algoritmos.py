@@ -33,7 +33,7 @@ def algoritmo1(cabecera,numerocalles,numerocoches,numerointersecciones,adyacenci
 
     j=0
     for rotonda in rotondas:
-        
+        print(rotonda)
 
         if len(rotonda.keys())>0:
             suma=np.sum([adyacencia1[j,llega] for llega,i in rotonda.items()])
