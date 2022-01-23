@@ -20,7 +20,7 @@ import algoritmos
   
 nombreArchivo="f.txt" 
 PRINT=False
-           
+print("hola")         
    
 cabecera,numerocalles,numerocoches,numerointersecciones,adyacencia,incidencia,adyacencia1,incidencia1,interseccionesvscohes,cochesvsinteresecciones,rotondas,calles,dicCalles,arrayCalles,cars=entradaDatos.entradaDatos(nombreArchivo)
 #%%algotimo           
