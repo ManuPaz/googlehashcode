@@ -17,7 +17,7 @@ import computarpuntos
 import escribirEnArchivo
 import time
 import algoritmos
-print("hola")
+
 nombreArchivo="f.txt"
 PRINT=False
 
