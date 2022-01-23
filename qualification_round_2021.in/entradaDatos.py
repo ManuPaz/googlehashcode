@@ -8,7 +8,7 @@ Created on Sun Jan 23 10:14:53 2022
 import pandas as pd
 import numpy as np
 import time
-print("hola")  
+
 def entradaDatos(nombreArchivo):
         #nombreArch="a.txt"
     nombreArch=nombreArchivo
@@ -35,7 +35,7 @@ def entradaDatos(nombreArchivo):
     rotondas=[]
     for i in range(0,numerointersecciones):
         rotondas.append({})
-    
+
     arrayCalles=np.empty(shape=(numerocalles),dtype=object)
     dicCalles=dict()
     for i in range(0,numerocalles):
@@ -49,28 +49,28 @@ def entradaDatos(nombreArchivo):
         incidencia[int(calle[0]),i]=1
         incidencia[int(calle[1]),i]=-1
         rotondas[int(calle[1])][int(calle[0])]=calle[2]
-        
+
     interseccionesvscohes=[]
     cochesvsinteresecciones=[]
     for i in range(0,numerointersecciones):
         interseccionesvscohes.append([])
     for i in range(0,numerocoches):
-        cochesvsinteresecciones.append([])  
-    
+        cochesvsinteresecciones.append([])
+
     for i in range (0,numerocoches):
         coche=cars[i]
         k=0
         for calle in coche[1:]:
-           
+
             rua=dicCalles[calle]
             rotondaFinal=calles[rua][1]
             cochesvsinteresecciones[i].append(int(rotondaFinal))
             if k==0:
                 interseccionesvscohes[int(rotondaFinal)].append(i)
             k+=1
-            
-   
-    
+
+
+
     for coche in cochesvsinteresecciones:
         for j in range(0,len(coche)-1):
             adyacencia1[coche[j+1],coche[j]]+=1
@@ -83,13 +83,12 @@ def entradaDatos(nombreArchivo):
         for u in rotonda.keys():
                #print(u)
                if   adyacencia1[l,u]==0:
-                    
+
                     array.append(u)
-                    
+
                     #print(adyacencia1[l,u])
         for aa in array:
             rotonda.pop(aa)
                #print(adyacencia1[l,u])
         l+=1
     return cabecera,numerocalles,numerocoches,numerointersecciones,adyacencia,incidencia,adyacencia1,incidencia1,interseccionesvscohes,cochesvsinteresecciones,rotondas,calles,dicCalles,arrayCalles,cars
-     
