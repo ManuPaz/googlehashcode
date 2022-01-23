@@ -51,7 +51,7 @@ parametros={}
 parametros["ciclo"]=15
 parametros["tiempoPorCalle"]=1
 nombres=["a.txt","b.txt","c.txt","d.txt","e.txt","f.txt"]
-ejecutarEnBucle.ejecutarTodosLosArchivosMP(nombres,parametros)
+ejecutarEnBucle.ejecutarTodosLosArchivos(nombres,parametros)
 
 #%%
 #bucle buscando los mejores parametros por archivo
