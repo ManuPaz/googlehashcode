@@ -8,7 +8,7 @@ import pandas as pd
 #%%
 archivos=["a.txt"]
 archivo=archivos[0]
-infogeneral,diccionario1,generadorParaContar=leerArchivo.leerArchivo(archivo)
+infogeneral,diccionario1,generadorParaContar=leerArchivo.leerArchivo("entrada/"+archivo)
 
 #%%
 #creacion de arrays de clases
@@ -26,6 +26,6 @@ a=funciones.devolverColumnaDiccionario(diccionario1, "a")
 #matriz=funciones.crearmatriz((2,2),10)
 
 #%%
-archivoSolucion="solucion"+archivo
+archivoSolucion="salida/solucion_"+archivo[0]
 escribirArchivo.escribirSolucion(solucion, archivoSolucion)
 

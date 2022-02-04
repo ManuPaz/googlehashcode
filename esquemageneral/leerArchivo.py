@@ -18,5 +18,5 @@ def leerArchivo(nombreArchivo):
             }
             for idx, line in enumerate(input_data[:cabecera[1]])
         }
-     generadorParaContar= ({"num_streets": int(line[0]), "streets": line[1:]} for line in input_data[cabecera[1]:])
+     generadorParaContar= [{"num_streets": int(line[0]), "streets": line[1:]} for line in input_data[cabecera[1]:]]
      return cabecera,diccionario1, generadorParaContar
