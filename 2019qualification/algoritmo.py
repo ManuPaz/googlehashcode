@@ -21,9 +21,10 @@ def algoritmo1(infogeneral,diccionarioFotos,diccionarioTags):
     slices={idx:[e] for idx,e in enumerate(diccionarioFotos.keys())}
     grupos=[list((slic,)) for slic in slices.keys()]
        
-    fotosPorGrupo=[set([k for e in grupo1 for j in slices[e] for k in diccionarioFotos[e]["tags"]])for grupo1 in grupos]
+    tagsPorGrupo=[set([k for e in grupo1 for j in slices[e] for k in diccionarioFotos[e]["tags"]])for grupo1 in grupos]
          
-    
+    while 1:
+        pass
        
         
     
