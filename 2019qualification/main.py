@@ -27,7 +27,7 @@ for archivo in archivos:
     print("Media de tags por  foto %s,desv tags por foto %s"%( tagsPorFoto,tagsPorFotoDesv))
     print("---------------\n")
 #%%
-archivo=archivos[3]
+archivo=archivos[0]
 infogeneral,diccionarioFotos,diccionarioTags=leerArchivo.leerArchivo("entrada/"+archivo)
 diccionarioFotos1=diccionarioFotos.copy()
 #solucion=algoritmo.algoritmo1(infogeneral,diccionarioFotos,diccionarioTags,1)
@@ -52,13 +52,13 @@ print(puntos)
     
 
 #%%
-infogeneral,diccionarioFotos,diccionarioTags=leerArchivo.leerArchivo("entrada/"+archivos[3])
+infogeneral,diccionarioFotos,diccionarioTags=leerArchivo.leerArchivo("entrada/"+archivos[0])
 #%%
 #herramienta que da el tiempo total y llamadas a cada funcion
 import cProfile
 
 #perf=cProfile.run("algoritmo.algoritmo2(infogeneral,diccionarioFotos,diccionarioTags,1)")
-perf=cProfile.run("algoritmo.algoritmo2(infogeneral,diccionarioFotos,diccionarioTags,1,paramMinimoH=2,paramMaximoH=8,paramMinimoV=2,paramMaximoV=6,paramParada=0.2)")
+cProfile.run("algoritmo.algoritmo2(infogeneral,diccionarioFotos,diccionarioTags,1,paramMinimoH=2,paramMaximoH=8,paramMinimoV=2,paramMaximoV=6,paramParada=0.2)")
 
 
 

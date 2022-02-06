@@ -10,12 +10,7 @@ import collections
       
     
     
-class Slice:
-    def __init__(self,fotos,tags,fotosRel):
-        self.fotos=fotos
-        self.tags=tags
-        self.fotosRel=fotosRel
-    
+
     
 def eliminarFoto(foto,fotos,diccionarioTags,diccionarioFotos,diccionarioFotosVerticales,diccionarioFotosHorizontales,tagsPorFoto):
     [diccionarioTags[e].remove(foto) for e in tagsPorFoto[foto]]
