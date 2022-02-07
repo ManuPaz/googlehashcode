@@ -5,6 +5,37 @@ import funciones
 import clases
 import numpy as np
 import pandas as pd
+#funcion para calcular los puntos de cada solucion
+def calcularPuntos(solucion,rides,bonus):
+    r1=[]    
+    puntos=0
+    bonusPoints=0
+    for coche in solucion.values():
+        tiempo=0
+        posicionCoche=[0,0]
+        for ride in coche:
+           
+                rid=rides[ride]
+                tiempo+=algoritmo.calcularDistancia(posicionCoche,rid["origin"])
+                if tiempo+rid["distancia"]<=rid["end"]:
+                    puntos+=rid["distancia"]
+                if tiempo<=rid["start"]:
+                    puntos+=bonus
+                    bonusPoints+=bonus
+                tiempo+=rid["distancia"]
+                posicionCoche=rid["destination"]
+                    
+                
+            
+            #esto es invalido, comprobar que no hay rides repetidos
+                if ride in r1:
+                    print("Repe")
+                else:
+                        r1.append(ride)
+        
+    print("Puntos %s"%puntos)
+    print("Puntos por bonus %s"%bonusPoints)
+    return puntos
 #%%
 archivos=["a_example.in","b_should_be_easy.in","c_no_hurry.in","d_metropolis.in","e_high_bonus.in"]
 archivo=archivos[1]
@@ -34,50 +65,36 @@ for archivo in archivos:
 
 
 #%%
+numRows,numColumns,numVehicles,numRides,bonus,steps,rides=leerArchivo.leerArchivo("entrada/"+archivo)
 distancias=algoritmo.calculaDistanciaVecinos(rides)
 #%%
-solucion=algoritmo.algoritmo1(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,distancias,paramBusqueda=100,momento="end")
+print(np.min(distancias))
+#%%
+archivos=["a_example.in","b_should_be_easy.in","c_no_hurry.in","d_metropolis.in","e_high_bonus.in"]
+archivo=archivos[4]
+numRows,numColumns,numVehicles,numRides,bonus,steps,rides=leerArchivo.leerArchivo("entrada/"+archivo)
+print("R %s, C %s, V %s, Rides %s, Bonus %s, time %s"%(numRows,numColumns,numVehicles,numRides,bonus,steps))
+parametroDeEspera=np.mean([ride["end"]-ride["start"] for ride in rides.values()])
+#parametroDeEspera=np.mean([ride["end"]-ride["start"] for ride in rides.values()])+np.mean([ride["distanciaOrigen"] for ride in rides.values()])
+#solucion=algoritmo.algoritmo1(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,paramBusqueda=100,momento="end")
+solucion=algoritmo.algoritmo2(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,paramBusqueda=100,momento="end",parametroDeEspera=parametroDeEspera)
 #a=funciones.devolverColumnaDiccionario(diccionario1, "a")
 #matriz=funciones.crearmatriz((2,2),10)
-print(solucion)
+print(calcularPuntos(solucion,rides,bonus))
 
 #%%
-archivoSolucion="salida/solucion_"+archivo[0]
-escribirArchivo.escribirSolucion(solucion, archivoSolucion)
+
+ridesCompletos=np.sum([len(a) for a in solucion.values()])
+print("Numero de rides completos %s"%ridesCompletos)
+print(calcularPuntos(solucion,rides,bonus))
 
 #%%
+numRows,numColumns,numVehicles,numRides,bonus,steps,rides=leerArchivo.leerArchivo("entrada/"+archivo)
 import cProfile
-cProfile.run("algoritmo.algoritmo()")
+cProfile.run("algoritmo.algoritmo3(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,paramBusqueda=100,momento='end',parametroDeEspera=parametroDeEspera)")
 
 #%%
-#funcion para calcular los puntos de cada solucion
-def calcularPuntos(solucion,rides,bonus):
-    r1=[]    
-    puntos=0
-    for coche in solucion.values():
-        tiempo=0
-        posicionCoche=[0,0]
-        for ride in coche:
-           
-                rid=rides[ride]
-                tiempo+=algoritmo.calcularDistancia(posicionCoche,rid["origin"])
-                if tiempo+rid["distancia"]<=rid["end"]:
-                    puntos+=rid["distancia"]
-                if tiempo<=rid["start"]:
-                    puntos+=bonus
-                tiempo+=rid["distancia"]
-                posicionCoche=rid["destination"]
-                    
-                
-            
-            #esto es invalido, comprobar que no hay rides repetidos
-                if ride in r1:
-                    print("Repe")
-                else:
-                        r1.append(ride)
-        
-    print("Puntos %s:"%puntos)
-    return puntos
+
 #ejecucion de todos los archivos en multiprocessing
 import time
 import multiprocessing  as mp
@@ -88,9 +105,11 @@ def ejecutar(i,archivo, shared_list):
     print(archivo)
     numRows,numColumns,numVehicles,numRides,bonus,steps,rides=leerArchivo.leerArchivo("entrada/"+archivo)
     #parametroDeEspera=np.mean([ride["distancia"] for ride in rides.values()])+np.mean([ride["distanciaOrigen"] for ride in rides.values()])
-    parametroDeEspera=np.mean([ride["distancia"] for ride in rides.values()])
-    solucion=algoritmo.algoritmo1(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,distancias,paramBusqueda=100,momento="end")
-    #solucion=algoritmo.algoritmo2(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,distancias,paramBusqueda=100,momento="end",parametroDeEspera=parametroDeEspera)
+   
+    parametroDeEspera=np.mean([ride["end"]-ride["start"] for ride in rides.values()])+np.mean([ride["distanciaOrigen"] for ride in rides.values()])
+   
+    # solucion=algoritmo.algoritmo1(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,paramBusqueda=100,momento="end")
+    solucion=algoritmo.algoritmo2(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,paramBusqueda=100,momento="end",parametroDeEspera=parametroDeEspera)
     archivoSolucion="salida/solucion_"+archivo[0]
     escribirArchivo.escribirSolucion(solucion, archivoSolucion)
     tiempo2=time.time()
@@ -115,4 +134,4 @@ for i,archivo in enumerate(archivos):
         proces.join()
         
 #%%
-print(sharedList)
+print(np.sum(sharedList))
