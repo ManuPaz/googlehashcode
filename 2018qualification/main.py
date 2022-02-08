@@ -91,7 +91,7 @@ print(calcularPuntos(solucion,rides,bonus))
 #%%
 numRows,numColumns,numVehicles,numRides,bonus,steps,rides=leerArchivo.leerArchivo("entrada/"+archivo)
 import cProfile
-cProfile.run("algoritmo.algoritmo3(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,paramBusqueda=100,momento='end',parametroDeEspera=parametroDeEspera)")
+cProfile.run("algoritmo.algoritmo2(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,paramBusqueda=100,momento='end',parametroDeEspera=parametroDeEspera)")
 
 #%%
 
