@@ -106,7 +106,7 @@ def ejecutar(i,archivo, shared_list):
     numRows,numColumns,numVehicles,numRides,bonus,steps,rides=leerArchivo.leerArchivo("entrada/"+archivo)
     #parametroDeEspera=np.mean([ride["distancia"] for ride in rides.values()])+np.mean([ride["distanciaOrigen"] for ride in rides.values()])
    
-    parametroDeEspera=np.mean([ride["end"]-ride["start"] for ride in rides.values()])+np.mean([ride["distanciaOrigen"] for ride in rides.values()])
+    parametroDeEspera=np.mean([ride["end"]-ride["start"] for ride in rides.values()])
    
     # solucion=algoritmo.algoritmo1(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,paramBusqueda=100,momento="end")
     solucion=algoritmo.algoritmo2(numRows,numColumns,numVehicles,numRides,bonus,steps,rides,paramBusqueda=100,momento="end",parametroDeEspera=parametroDeEspera)
