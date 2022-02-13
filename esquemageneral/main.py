@@ -6,7 +6,9 @@ import clases
 import numpy as np
 import pandas as pd
 #%%
-archivos=["a_example.txt"]
+import os
+archivos=os.listdir("entrada/")
+print(archivos)
 archivo=archivos[0]
 infogeneral,diccionario1,generadorParaContar=leerArchivo.leerArchivo("entrada/"+archivo)
 
