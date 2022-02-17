@@ -38,7 +38,7 @@ for archivo in archivos:
 
 
 #%%
-k=1
+k=0
 archivo=archivos[k]
 H,W,R,Pb,Pr,B, array,inicialPos=leerArchivo.leerArchivo("entrada/"+archivo)
 matriz=np.array(array)
@@ -67,6 +67,11 @@ for e in posiciones:
     
     
     matriz[e]="N"
+for b in cable:
+    #if e[0]==90:
+    
+    if matriz[b]!="N":
+        matriz[b]="B"
 
 print(len(cable))
 np.savetxt("archivoMatriz.txt", matriz,fmt="%c")

@@ -256,41 +256,47 @@ def calcularPosicinesNuevas(inicalPos,matriz,R,diccionario1,diccionario,H,W,posi
     
     inicalPos=list(inicalPos)
     pos=inicalPos.copy()
+    modulo=np.random.randint(int(R/2),R)
     
-    pos[1]+=2*R
-    
+    pos[1]+=2*modulo
+    #pos[0]+=2*modulo
      
     ini=diccionario1[tuple(inicalPos)]
     pos=tuple(pos)
   
     
-    if pos[1]<W and (matriz[pos]=="-" or matriz[pos]==".") and tuple(pos)!=tuple(ini):
+    if pos[1]<W and pos[0]<H and (matriz[pos]=="-" or matriz[pos]==".") and tuple(pos)!=tuple(ini):
         if pos not in posiciones1:
             posiciones1.append(pos)
             diccionario1[pos]=inicalPos
             diccionario[pos]=calcularCubiertos(pos,matriz,R,H,W)
     pos=inicalPos.copy()
-    pos[1]-=2*R
+    modulo=np.random.randint(int(R/2),R)
+    pos[1]-=2*modulo
+    #pos[0]-=2*modulo
     pos=tuple(pos)
-    if pos[1]>0 and (matriz[pos]=="-" or matriz[pos]==".") and tuple(pos)!=tuple(ini):
+    if pos[1]>0 and pos[0]>0 and (matriz[pos]=="-" or matriz[pos]==".") and tuple(pos)!=tuple(ini):
         if pos not in posiciones1:
             posiciones1.append(pos)
             diccionario1[pos]=inicalPos
             diccionario[pos]=calcularCubiertos(pos,matriz,R,H,W)
     pos=inicalPos.copy()
-   
-    pos[0]+=2*R
+    modulo=np.random.randint(int(R/2),R)
+    pos[0]+=2*modulo
+    #pos[1]-=2*modulo
   
     pos=tuple(pos)
-    if pos[0]<H and (matriz[pos]=="-" or matriz[pos]==".") and tuple(pos)!=tuple(ini):
+    if pos[0]<H and pos[1]<W  and (matriz[pos]=="-" or matriz[pos]==".") and tuple(pos)!=tuple(ini):
          if pos not in posiciones1:
             posiciones1.append(pos)
             diccionario1[pos]=inicalPos
             diccionario[pos]=calcularCubiertos(pos,matriz,R,H,W)
     pos=inicalPos.copy()
-    pos[0]-=2*R
+    modulo=np.random.randint(int(R/2),R)
+    pos[0]-=2*modulo
+    #pos[1]+=2*modulo
     pos=tuple(pos)
-    if pos[0]>0 and (matriz[pos]=="-" or matriz[pos]==".") and tuple(pos)!=tuple(ini):
+    if pos[0]>0 and pos[1]<W and (matriz[pos]=="-" or matriz[pos]==".") and tuple(pos)!=tuple(ini):
          if pos not in posiciones1:
             posiciones1.append(pos)
             diccionario1[pos]=inicalPos
