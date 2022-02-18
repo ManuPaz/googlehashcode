@@ -9,9 +9,27 @@ import pandas as pd
 import os
 archivos=os.listdir("entrada/")
 print(archivos)
-archivo=archivos[0]
-infogeneral,diccionario1,generadorParaContar=leerArchivo.leerArchivo("entrada/"+archivo)
 
+archivo=archivos[0]
+print(archivo)
+rows,columns,drones,turns,payload,numProdTypes,numWarehouses,numOrders,diccionarioWarehouses,diccionarioOrders =leerArchivo.leerArchivo("entrada/"+archivo)
+
+#%%
+import time
+for archivo in archivos:
+    #rows,columns,drones,turns,payload,numProdTypes,numWarehouses,numOrders
+    print(archivo)
+    rows,columns,drones,turns,payload,numProdTypes,numWarehouses,numOrders,diccionarioWarehouses,diccionarioOrders =leerArchivo.leerArchivo("entrada/"+archivo)
+    print("rows %s,columns %s,drones %s,turns %s,payload %s,numProdTypes %s,numWarehouses %s,numOrders %s"%(rows,columns,drones,turns,payload,numProdTypes,numWarehouses,numOrders))
+    print("--------------------------------")
+    print(np.mean([u["numItems"] for u in diccionarioOrders.values()]))
+    print(np.mean([u["numItems"] for u in diccionarioWarehouses.values()]))
+    #for order in diccionarioOrders .items():
+      #  print(order)
+       # time.sleep(1)
+    
+    
+    
 #%%
 solucion=algoritmo.algoritmo()
 #a=funciones.devolverColumnaDiccionario(diccionario1, "a")
