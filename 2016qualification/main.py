@@ -21,12 +21,17 @@ for archivo in archivos:
     print(archivo)
     rows,columns,drones,turns,payload,numProdTypes,numWarehouses,numOrders,diccionarioWarehouses,diccionarioOrders =leerArchivo.leerArchivo("entrada/"+archivo)
     print("rows %s,columns %s,drones %s,turns %s,payload %s,numProdTypes %s,numWarehouses %s,numOrders %s"%(rows,columns,drones,turns,payload,numProdTypes,numWarehouses,numOrders))
+    print("Media de items por orden %s)"%np.mean([u["numItems"] for u in diccionarioOrders.values()]))
+    print("Min de items por orden %s)"%np.min([u["numItems"] for u in diccionarioOrders.values()]))
+    print("Max de items por orden %s)"%np.max([u["numItems"] for u in diccionarioOrders.values()]))
+    print("Media de items por WHareHouse %s"%np.mean([len(u["items"]) for u in diccionarioWarehouses.values()]))
     print("--------------------------------")
-    print(np.mean([u["numItems"] for u in diccionarioOrders.values()]))
-    print(np.mean([u["numItems"] for u in diccionarioWarehouses.values()]))
-    #for order in diccionarioOrders .items():
-      #  print(order)
-       # time.sleep(1)
+    for e in diccionarioWarehouses:
+        print(e["loc"])
+        time.sleep(0.5)
+   
+   
+        
     
     
     
