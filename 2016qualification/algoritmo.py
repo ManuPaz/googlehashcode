@@ -8,3 +8,9 @@ import itertools
 def algoritmo():
     solucion=None
     return solucion
+
+
+
+def algoritmo1(duracion,numSatelites,numCollections,diccionarioSatelites,diccionarioColecciones):
+    return None
+    
