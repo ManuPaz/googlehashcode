@@ -179,7 +179,7 @@ def algoritmo2(numContributors,numProyects, contributors, projects,skills,usuari
                 addProject=False
                 #print("Project eliminado")
                 break
-        """if addProject:
+        if addProject:
             #print("add")
             l=0
             for i,skill in  enumerate(proyectoElegidoValor["roles"]):
@@ -213,7 +213,7 @@ def algoritmo2(numContributors,numProyects, contributors, projects,skills,usuari
                             if  maximo> proyectosTiempoDisponible[e][0]:
                                 proyectosTiempoDisponible[e]=[maximo,skill]
                                 if projects[e]["daybefore"]+projects[e]["score"] -projects[e]["days"]- maximo<0:
-                                    proyectosAEliminar.append(e)"""
+                                    proyectosAEliminar.append(e)
                         
              
         if addProject:
