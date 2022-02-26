@@ -1,5 +1,0 @@
-2
-['Maria', 'Bob']
-W e b C h a t
-['Bob', 'Anna']
-W e b S e r v e r
