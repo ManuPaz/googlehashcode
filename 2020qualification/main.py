@@ -1,34 +1,31 @@
-import algoritmo
-import leerArchivo
-import escribirArchivo
-import funciones
-import clases
 import numpy as np
-import pandas as pd
-import pandas as pd
-#%%
-#informacion de los archivos para saber que algoritmo utizar
-archivos=["a_example.txt","b_read_on.txt","c_incunabula.txt","d_tough_choices.txt","e_so_many_books.txt","f_libraries_of_the_world.txt"]
+
+import algoritmo
+import escribirArchivo
+import leerArchivo
+# %%
+# informacion de los archivos para saber que algoritmo utizar
+archivos = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt",
+            "f_libraries_of_the_world.txt"]
 for archivo in archivos:
     print(archivo)
-    infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict=leerArchivo.leerArchivo("entrada/"+archivo)
+    infogeneral, booksOfLibraries, libraryDescriptions, puntosPorLibroDict = leerArchivo.leerArchivo(
+        "entrada/" + archivo)
     print(infogeneral)
-  
-    #print(np.median([e["signupdays"] for e in libraryDescriptions.values()  ]))
-#    print(np.min([e["signupdays"] for e in libraryDescriptions.values()  ]))
-    media=np.mean([e["signupdays"] for e in libraryDescriptions.values()  ])
-    desv=np.std([e["signupdays"] for e in libraryDescriptions.values()  ])
-    minimo=(np.min([e["signupdays"] for e in libraryDescriptions.values()  ]))
-    maximo=np.max([e["signupdays"] for e in libraryDescriptions.values()  ])
-    print("Puntos medios por libor %s"%(np.mean([e for e in puntosPorLibroDict.values() ])))
-    print("Mean %s"%media)
-    print("Media -desv %s"%(media-desv))
-    print("Media + desv %s"%(media+desv))
-    print("Min %s"%(minimo))
-    print("Max %s" %(maximo))
-    print("last %s"%(infogeneral["days"]/media))
-    mediaLibros=np.mean([e["numbooks"] for e in libraryDescriptions.values() ])
-    print("Media libraos %s"%mediaLibros)
+
+    media = np.mean([e["signupdays"] for e in libraryDescriptions.values()])
+    desv = np.std([e["signupdays"] for e in libraryDescriptions.values()])
+    minimo = (np.min([e["signupdays"] for e in libraryDescriptions.values()]))
+    maximo = np.max([e["signupdays"] for e in libraryDescriptions.values()])
+    print("Puntos medios por libor %s" % (np.mean([e for e in puntosPorLibroDict.values()])))
+    print("Mean %s" % media)
+    print("Media -desv %s" % (media - desv))
+    print("Media + desv %s" % (media + desv))
+    print("Min %s" % (minimo))
+    print("Max %s" % (maximo))
+    print("last %s" % (infogeneral["days"] / media))
+    mediaLibros = np.mean([e["numbooks"] for e in libraryDescriptions.values()])
+    print("Media libraos %s" % mediaLibros)
     """mediaSubidaLibros=np.mean([e["booksperday"] for e in libraryDescriptions.values() ])
     mediaLibros=np.mean([e["numbooks"] for e in libraryDescriptions.values() ])
     idx1=[e for  e,i in  libraryDescriptions.items() if i["signupdays"]<=media-desv]
@@ -37,111 +34,106 @@ for archivo in archivos:
     mediaAltosTiempoSubida=np.mean([e["booksperday"] for i,e in libraryDescriptions.items() if i in idx2])
     mediaBajosNumBooks=np.mean([e["numbooks"] for i,e in libraryDescriptions.items() if i in idx1 ])
     mediaAltosNumBooks=np.mean([e["numbooks"] for i,e in libraryDescriptions.items() if i in idx2])"""
-    #print("temp subida altos %s, temp subida bajos %s, num books altos %s, num books bajos %s"%(   mediaBajosTiempoSubida,   mediaAltosTiempoSubida,  mediaBajosNumBooks, mediaAltosNumBooks))
+
     print("--------------------------------")
     print("\n")
-    
- 
 
-#%%
-#prueba de calculo de la solucion para archivo de prueba 
-archivos=["a_example.txt","b_read_on.txt","c_incunabula.txt","d_tough_choices.txt","e_so_many_books.txt","f_libraries_of_the_world.txt"]
-archivo=archivos[0]
-infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict=leerArchivo.leerArchivo("entrada/"+archivo)
+# %%
+# prueba de calculo de la solucion para archivo de prueba
+archivos = ["a_example.txt", "b_read_on.txt", "c_incunabula.txt", "d_tough_choices.txt", "e_so_many_books.txt",
+            "f_libraries_of_the_world.txt"]
+archivo = archivos[0]
+infogeneral, booksOfLibraries, libraryDescriptions, puntosPorLibroDict = leerArchivo.leerArchivo("entrada/" + archivo)
 
-solucion,solucionOrden=algoritmo.algoritmo1(infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict)
+solucion, solucionOrden = algoritmo.algoritmo1(infogeneral, booksOfLibraries, libraryDescriptions, puntosPorLibroDict)
 
-archivoSolucion="salida/solucion_"+archivo[0]
-escribirArchivo.escribirEnArchivo(solucion,solucionOrden, archivoSolucion)
+archivoSolucion = "salida/solucion_" + archivo[0]
+escribirArchivo.escribirEnArchivo(solucion, solucionOrden, archivoSolucion)
 
-#%%
-#calculo de soluciones especialmente para archivo d
+# %%
+# calculo de soluciones especialmente para archivo d
 import time
 for archivo in archivos:
-    tiempo1=time.time()
-    infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict=leerArchivo.leerArchivo("entrada/"+archivo)
+    tiempo1 = time.time()
+    infogeneral, booksOfLibraries, libraryDescriptions, puntosPorLibroDict = leerArchivo.leerArchivo(
+        "entrada/" + archivo)
 
-    solucion,solucionOrden,librosAñadidos=algoritmo.algoritmo2(infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict)
-    #solucion,solucionOrden=algoritmo.algoritmo1V2(infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict,parametroDesviacion=0.25)
-    archivoSolucion="salida/solucion_"+archivo[0]
-    escribirArchivo.escribirEnArchivo(solucion,solucionOrden, archivoSolucion)
-    tiempo2=time.time()
-    suma=np.sum( [puntosPorLibroDict[k] for k in librosAñadidos])
-    print("Archivo %s,puntos %s,Tiempo %s"%(archivo,suma,tiempo2-tiempo1))
+    solucion, solucionOrden, librosAñadidos = algoritmo.algoritmo2(infogeneral, booksOfLibraries, libraryDescriptions,
+                                                                   puntosPorLibroDict)
 
+    archivoSolucion = "salida/solucion_" + archivo[0]
+    escribirArchivo.escribirEnArchivo(solucion, solucionOrden, archivoSolucion)
+    tiempo2 = time.time()
+    suma = np.sum([puntosPorLibroDict[k] for k in librosAñadidos])
+    print("Archivo %s,puntos %s,Tiempo %s" % (archivo, suma, tiempo2 - tiempo1))
 
-
-#%%
-#calculo de soluciones para archivos diferentes del d
+# %%
+# calculo de soluciones para archivos diferentes del d
 import time
-sumaT=0
-for archivo in archivos[0:3]+archivos[4:]:
-    tiempo1=time.time()
-    infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict=leerArchivo.leerArchivo("entrada/"+archivo)
+sumaT = 0
+for archivo in archivos[0:3] + archivos[4:]:
+    tiempo1 = time.time()
+    infogeneral, booksOfLibraries, libraryDescriptions, puntosPorLibroDict = leerArchivo.leerArchivo(
+        "entrada/" + archivo)
 
-    solucion,solucionOrden,librosAñadidos=algoritmo.algoritmo1(infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict)
-    #solucion,solucionOrden=algoritmo.algoritmo1V2(infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict,parametroDesviacion=0.25)
-    archivoSolucion="salida/solucion_"+archivo[0]
-    escribirArchivo.escribirEnArchivo(solucion,solucionOrden, archivoSolucion)
-    tiempo2=time.time()
-    suma=np.sum( [puntosPorLibroDict[k] for k in librosAñadidos])
-    sumaT+=suma
-    print("Archivo %s,puntos %s,Tiempo %s,sumaT %s (Millones)"%(archivo,suma,tiempo2-tiempo1,sumaT/1000000))
-    
-#%%
-#prueba algoritmo revisando la solucion
+    solucion, solucionOrden, librosAñadidos = algoritmo.algoritmo1(infogeneral, booksOfLibraries, libraryDescriptions,
+                                                                   puntosPorLibroDict)
+
+    archivoSolucion = "salida/solucion_" + archivo[0]
+    escribirArchivo.escribirEnArchivo(solucion, solucionOrden, archivoSolucion)
+    tiempo2 = time.time()
+    suma = np.sum([puntosPorLibroDict[k] for k in librosAñadidos])
+    sumaT += suma
+    print("Archivo %s,puntos %s,Tiempo %s,sumaT %s (Millones)" % (archivo, suma, tiempo2 - tiempo1, sumaT / 1000000))
+
+# %%
+# prueba algoritmo revisando la solucion
 import time
-for archivo in archivos[0:3]+archivos[4:]:
-    tiempo1=time.time()
-    infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict=leerArchivo.leerArchivo("entrada/"+archivo)
+for archivo in archivos[0:3] + archivos[4:]:
+    tiempo1 = time.time()
+    infogeneral, booksOfLibraries, libraryDescriptions, puntosPorLibroDict = leerArchivo.leerArchivo(
+        "entrada/" + archivo)
 
-    solucion,solucionOrden,librosAñadidos=algoritmo.algoritmoConRevision(algoritmo.algoritmo1,infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict)
-    #solucion,solucionOrden=algoritmo.algoritmo1V2(infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict,parametroDesviacion=0.25)
-    archivoSolucion="salida/solucion_"+archivo[0]
-    escribirArchivo.escribirEnArchivo(solucion,solucionOrden, archivoSolucion)
-    tiempo2=time.time()
-    suma=np.sum( [puntosPorLibroDict[k] for k in librosAñadidos])
-    print("Archivo %s,puntos %s,Tiempo %s"%(archivo,suma,tiempo2-tiempo1))
-      
-    
-#%%
-#optimizacion del parametro de desviacion tipica con multiprocessing
-#multiprocessing es el modulo para crear varios procesos
-#se pasa una lista en zona de memoria comun creandola con  sharedList=mp.Manager().list()
-import time
-import multiprocessing  as mp
-parametros=[2,-1,-0.5,-0.2,-0.1,-0.05,0,0.05,0.1,0.2,0.5,1,2]
-sumaT=0
-def ejecutar(i,parametro,archivo, shared_list):
-    tiempo1=time.time()
-    infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict=leerArchivo.leerArchivo("entrada/"+archivo)
+    solucion, solucionOrden, librosAñadidos = algoritmo.algoritmoConRevision(algoritmo.algoritmo1, infogeneral,
+                                                                             booksOfLibraries, libraryDescriptions,
+                                                                             puntosPorLibroDict)
 
-    solucion,solucionOrden,librosAñadidos=algoritmo.algoritmo1V2(infogeneral,booksOfLibraries,libraryDescriptions,puntosPorLibroDict,parametro)
-  
-    suma=np.sum( [puntosPorLibroDict[k] for k in librosAñadidos])
-    shared_list[i]=suma
-    tiempo2=time.time()
-    #print("Archivo %s, parametro %s, suma %s,tiempo %s"%(archivo,parametro,suma,tiempo2-tiempo1))
- 
-for archivo in archivos[0:3]+archivos[4:]:
-    sharedList=mp.Manager().list()
+    archivoSolucion = "salida/solucion_" + archivo[0]
+    escribirArchivo.escribirEnArchivo(solucion, solucionOrden, archivoSolucion)
+    tiempo2 = time.time()
+    suma = np.sum([puntosPorLibroDict[k] for k in librosAñadidos])
+    print("Archivo %s,puntos %s,Tiempo %s" % (archivo, suma, tiempo2 - tiempo1))
+
+# %%
+# optimizacion del parametro de desviacion tipica con multiprocessing
+# multiprocessing es el modulo para crear varios procesos
+# se pasa una lista en zona de memoria comun creandola con  sharedList=mp.Manager().list()
+import multiprocessing as mp
+parametros = [2, -1, -0.5, -0.2, -0.1, -0.05, 0, 0.05, 0.1, 0.2, 0.5, 1, 2]
+sumaT = 0
+def ejecutar(i, parametro, archivo, shared_list):
+    infogeneral, booksOfLibraries, libraryDescriptions, puntosPorLibroDict = leerArchivo.leerArchivo(
+        "entrada/" + archivo)
+
+    solucion, solucionOrden, librosAñadidos = algoritmo.algoritmo1V2(infogeneral, booksOfLibraries, libraryDescriptions,
+                                                                     puntosPorLibroDict, parametro)
+
+    suma = np.sum([puntosPorLibroDict[k] for k in librosAñadidos])
+    shared_list[i] = suma
+for archivo in archivos[0:3] + archivos[4:]:
+    sharedList = mp.Manager().list()
     [sharedList.append(0) for p in parametros]
-    process=[]
-    for i,parametro in enumerate(parametros):
-       
-      
-        process.append(mp.Process(target=ejecutar,args=[i,parametro,archivo,sharedList]))
+    process = []
+    for i, parametro in enumerate(parametros):
+        process.append(mp.Process(target=ejecutar, args=[i, parametro, archivo, sharedList]))
         process[i].start()
     for proces in process:
         proces.join()
-        
-    print(sharedList)
-    sumaT+=max(sharedList)
-    print(sumaT)
-    
-#%%
-#
-print(sumaT+5028010)
 
-   
-  
+    print(sharedList)
+    sumaT += max(sharedList)
+    print(sumaT)
+
+# %%
+
+print(sumaT + 5028010)
