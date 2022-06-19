@@ -1,4 +1,0 @@
-Utilizar cProfile para ver los cuellos de botella en los algoritmos
-Utilizar compresion de listas sin condicionales
-Utilizar ordenacion de arrays por la clave del diccionario, sin utilizar funciones en la clave
-Utilizar funciones lineales en las variables y en cada iteracion utilizar solo un numero peuqeño de elememtos que puedan ser validos.
