@@ -1,3 +1,0 @@
-Utilizar diccionarios para todos los elementos
-Utilizar listas en las que se añaden las claves de los diccionarios y se ordenan segun el parametro de los diccionarios con lista.sort(key=lambda t:diccionario[t])
-Recorrer la lista eliminando elementos y en cada iteracion hacer comprobaciones que se puedan simplificar.
