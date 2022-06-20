@@ -232,7 +232,6 @@ def calcularPosicinesNuevas(inicalPos, matriz, R, diccionario1, diccionario, H, 
     pos = inicalPos.copy()
     modulo = np.random.randint(int(R / 2), R)
     pos[1] -= 2 * modulo
-    # pos[0]-=2*modulo
     pos = tuple(pos)
     if pos[1] > 0 and pos[0] > 0 and (matriz[pos] == "-" or matriz[pos] == ".") and tuple(pos) != tuple(ini):
         if pos not in posiciones1:
@@ -277,7 +276,6 @@ def algoritmo1(H, W, R, Pb, Pr, B, array, inicialPos, posicionSiguiente):
     diccionario1[tuple(inicialPos)] = (-100, -11)
     diccionario1[siguiente] = tuple(inicialPos)
     posicionesNuevas = []
-    # diccionario[inicialPos]=calcularCubiertos(inicialPos,matriz,R)
     cable = []
     posicion = inicialPos
     posiciones.append(tuple(posicion))
@@ -291,7 +289,6 @@ def algoritmo1(H, W, R, Pb, Pr, B, array, inicialPos, posicionSiguiente):
         calcularPosicinesNuevas(siguiente, matriz, R, diccionario1, diccionario, H, W, posicionesNuevas)
 
         posicionesNuevas.sort(key=lambda t: diccionario[t], reverse=True)
-        # print(posicionesNuevas)
         siguiente = posicionesNuevas[0]
         diccionario.pop(siguiente)
         posicionesNuevas.remove(siguiente)
@@ -299,10 +296,8 @@ def algoritmo1(H, W, R, Pb, Pr, B, array, inicialPos, posicionSiguiente):
         posicion = diccionario1[siguiente]
 
         posicionesCubiertas = calcularPosicionesCubiertas(siguiente, matriz, R, H, W)
-        # print(siguiente)
         for e in posicionesCubiertas:
             matriz[e] = "+"
-            # print(e)
         B -= distancia * Pb + Pr
 
         print(B)
