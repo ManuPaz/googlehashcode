@@ -82,7 +82,6 @@ def algoritmo2(dicClientes, ingredientes, cotaSup, operador, minimosINgredientes
      x not in clientesTotales]
     [ingredientes1[e]["no"].remove(x) for e in ingredientes1.keys() for x in ingredientes1[e]["no"] if
      x not in clientesTotales]
-    # print(ingredientes1)
     k = numeroAgrupacion
     long = len(clientesTotales)
     for i in range(iteraciones):
